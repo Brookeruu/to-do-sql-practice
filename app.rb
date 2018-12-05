@@ -17,7 +17,7 @@ DB = PG.connect({:dbname => "to_do"})
  # end
 
  post('/lists') do
-   name = param["name"]
+   name = params["name"]
    list = List.new({:name => name, :id => nil})
    list.save
    @lists = List.all
@@ -30,14 +30,13 @@ DB = PG.connect({:dbname => "to_do"})
  end
 
  post("/tasks") do
-  description = params.fetch("description")
-  list_id = params.fetch("list_id").to_i()
-  task = Task.new({:description => description, :list_id => list_id})
-  task.save()
-  @list = List.find(list_id)
-  # @task = Task.new({:description => description, :list_id => list_id})
-  erb(:task_success)
-end
+   description = params.fetch("description")
+   list_id = params.fetch("list_id").to_i()
+   @list = List.find(list_id)
+   @task = Task.new({:description => description, :list_id => list_id})
+   @task.save()
+   erb(:task_success)
+ end
 
 get("/lists/:id/edit") do
   @list = List.find(params.fetch("id").to_i())

@@ -10,7 +10,7 @@ describe(List) do
   describe("#name") do
     it("tells you its name") do
       list = List.new({:name => "Epicodus Stuff", :id => nil})
-      expect(list.name()).to(eq("Epicodus stuff"))
+      expect(list.name()).to(eq("Epicodus Stuff"))
     end
   end
 
@@ -35,7 +35,7 @@ describe(List) do
       test_list = List.new({:name => "Epicodus stuff", :id => nil})
       test_list.save()
       test_list2 = List.new({:name => "Home stuff", :id => nil})
-      test_list.save()
+      test_list2.save()
       expect(List.find(test_list2.id())).to(eq(test_list2))
     end
   end
